@@ -1,6 +1,6 @@
 # Connect Four
 
-Playing as either the red user or the yellow user, players compete to create a row of their colours going up, down, left or right that is equivalent of the chosen winning number of rows.
+Playing as either the red user or the yellow user, players compete to create a row of their colours going up, down, left or right that is equivalent to chosen winning number of rows.
 
 Language: Python
 ## Step-by-Step run through of the script
@@ -21,7 +21,7 @@ The functions used include: start(), grid(), game() and checkWinner()
 2. If the current move number is even then it is the red players turn, if odd then it is the yellow players turn.
 3. Adjustment is made so that the users row number and array row number are aligned.
 4. User is asked which column they want to drop their token down.
-5.
+5. Validates columnChoice, ensuring the value is not too big or too small.
 6. A check is done to see if the bottom item of that column is 0, if it is then the red token will replace that, otherwise it will check the one above the bottom and so on until an empty slot is found.
 7. The grid is reprinted to display the current game situation.
 8. Current move count is increased by one
@@ -33,12 +33,13 @@ The functions used include: start(), grid(), game() and checkWinner()
 3. For each colour a while loop is created that is maintained until the count for that colour is bigger than the winning number of rows.
 4. Within each while loop is a check for each direction away from the current token. i.e The token to the left will be checked to see if it's value is "R", if it is it will continue to loop that way, increasing the redCount. Once it has exceeded the winning number of rows the game will end and a winner is declared. The exact same process occurs for the remaining directions (Above, to the right and below) and this also occurs exactly the same but for the yellow player.
 ```
-while yellowCount<winningNoRows:
+while redCount<winningNoRows:
             #Checks the value below
-            if array[row+1][col]=="Y":
+            if array[row+1][col]=="R":
                 for i in range(1,winningNoRows):
-                    if array[row+i][col]=="Y":
-                        yellowCount=yellowCount+1
+                    if array[row+i][col]=="R":
+                        redCount=redCount+1
+        
                     else:
                         break
 ```
@@ -47,5 +48,6 @@ while yellowCount<winningNoRows:
 As time was limited, many improvements could be made to this program.
 1. Logging: A log file could have been created and log each action and variable change made to make it easier in the future to discover where problems occur.
 2. More sophisticated validation checks. The validation on the user input was basic, insuring the values lied between certain values. This could be improved by ensuring the user only gave numerical values.
-3. Increased range of winner check. Currently you could only win if the direction of the winning row was N,E,S,W. This could be improved by allowing each player to win diagonally (NE,SE, SW, NW).
+3. Increased range of winner check. Currently you could only win if the direction of the winning row was N,E,S,W. This could be improved by allowing each player to win diagonally (NE, SE, SW, NW).
 4. Using a framework or GUI to display the game would improve appearances.
+5. The checkwinner function does not currently work correctly, therefore would be fixed and working given more time.
